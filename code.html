@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Teachers' Day!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center p-8 text-white">
+    <div class="text-center mb-8">
+        <h1 class="text-5xl font-bold mb-4">Happy Teachers' Day</h1>
+        <p class="text-xl opacity-90">Celebrate the heroes who inspire us</p>
+    </div>
+
+    <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 max-w-md w-full shadow-2xl">
+        <h2 class="text-2xl font-semibold mb-6 text-center">Create a Loving Message</h2>
+        <form id="wishForm">
+            <div class="mb-4">
+                <label for="teacherTitle" class="block text-sm font-medium mb-2">Title</label>
+                <select id="teacherTitle" class="w-full p-3 border-none rounded-lg bg-white bg-opacity-20 text-white focus:outline-none focus:ring-2 focus:ring-white">
+                    <option value="" disabled selected class="bg-purple-600">-- Select Title --</option>
+                    <option value="Sir" class="bg-purple-600">Sir</option>
+                    <option value="Madam" class="bg-purple-600">Madam</option>
+                </select>
+            </div>
+            <div class="mb-6">
+                <label for="teacherName" class="block text-sm font-medium mb-2">Teacher's Name</label>
+                <input type="text" id="teacherName" class="w-full p-3 border-none rounded-lg bg-white bg-opacity-20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white" placeholder="Enter teacher's name" required>
+            </div>
+            <button type="button" id="generateWish" class="w-full bg-white text-purple-600 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200">Generate Loving Message</button>
+        </form>
+        <div id="personalWish" class="mt-6 p-4 bg-white bg-opacity-20 rounded-lg text-center fade-in hidden"></div>
+    </div>
+
+    <script>
+        const lovingMessages = [
+            "Dear {name} {title}, your dedication and love for teaching have truly inspired me. Happy Teachers' Day!",
+            "To my amazing teacher {name} {title}, thank you for your endless patience and wisdom. Wishing you happiness always!",
+            "Happy Teachers' Day {name} {title}! Your passion for education lights up the world. You are deeply appreciated.",
+            "Dear {name} {title}, you make learning magical. Thank you for being such an incredible mentor and friend.",
+            "Happy Teachers' Day {name} {title}! Your kindness and guidance have shaped who I am. Forever grateful."
+        ];
+
+        document.getElementById('generateWish').addEventListener('click', function() {
+            const title = document.getElementById('teacherTitle').value;
+            const name = document.getElementById('teacherName').value.trim();
+            if (!title) {
+                alert('Please select a title!');
+                return;
+            }
+            if (!name) {
+                alert('Please enter the teacher\'s name!');
+                return;
+            }
+            const randomMessage = lovingMessages[Math.floor(Math.random() * lovingMessages.length)];
+            const personalizedMessage = randomMessage.replace('{title}', title).replace('{name}', name);
+            document.getElementById('personalWish').textContent = personalizedMessage;
+            document.getElementById('personalWish').classList.remove('hidden');
+            document.getElementById('personalWish').classList.add('fade-in');
+        });
+    </script>
+</body>
+</html>
+</content>
+</create_file>
